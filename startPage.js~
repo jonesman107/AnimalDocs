@@ -76,7 +76,7 @@
 	// start a new doc
 	function startNew() {
 		if ("WebSocket" in window) {
-			var client = new WebSocket("ws://205.175.118.235:5555");
+			var client = new WebSocket("ws://localhost:5555");
 			var checked = document.getElementById("yes");
 			client.onopen = function(event) {
 				if(checked.checked) {
