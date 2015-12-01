@@ -47,7 +47,7 @@
 					password = receive.substring(5, 5 + length);
 					needPassword();
 				} else{
-					location.href = "sharedDoc.html?id=" + id;
+					location.href = "http://jonesman107.github.io/sharedDoc.html?id=" + id;
 					back();
 				}
 			};
@@ -66,7 +66,7 @@
 	function access() {
 		var inputPassword = document.getElementById("inputPassword").value;
 		if(password && inputPassword == password) {
-			location.href = "sharedDoc.html?id=" + id;
+			location.href = "http://jonesman107.github.io/sharedDoc.html?id=" + id;
 			back();
 		} else {
 			wrong();
@@ -89,7 +89,7 @@
 			// ask the server to generate a id for the new doc
 			client.onmessage = function(data) {
 				id = data.data.toString();
-				location.href = "sharedDoc.html?id=" + id;
+				location.href = "http://jonesman107.github.io/sharedDoc.html?id=" + id;
 				back();
 			};
 		} else {
