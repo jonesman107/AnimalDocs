@@ -77,7 +77,7 @@
 	// todo: send change to server
 	function deleteFile() {
 		// sent to the server.
-		location.href = "index.html";
+		location.href = "startPage.html";
 	}
 
 	// do not delete and show the text area again
