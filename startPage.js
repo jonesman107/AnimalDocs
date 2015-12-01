@@ -26,7 +26,7 @@
 		document.getElementById("start").style.display = "none";
 		id = document.getElementById("docID").value;
 		if ("WebSocket" in window) {
-			var client = new WebSocket("ws://localhost:5555");
+			var client = new WebSocket("ws://172.28.7.28:5555");
 			client.onopen = function(event) {
 				client.send(id);
 			};
@@ -76,7 +76,7 @@
 	// start a new doc
 	function startNew() {
 		if ("WebSocket" in window) {
-			var client = new WebSocket("ws://205.175.118.235:5555");
+			var client = new WebSocket("ws://172.28.7.28:5555");
 			var checked = document.getElementById("yes");
 			client.onopen = function(event) {
 				if(checked.checked) {
