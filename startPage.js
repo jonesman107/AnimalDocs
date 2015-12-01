@@ -1,0 +1,119 @@
+(function() {
+
+	"use strict";
+
+	var password;
+	var id;
+	window.onload = function() {
+		var searchBotton = document.getElementById("search");
+		searchBotton.onclick = search;
+
+		var backButton = document.getElementById("back");
+		backButton.onclick = back;
+
+		var accessButton = document.getElementById("access");
+		accessButton.onclick = access;
+
+		var newButton = document.getElementById("new");
+		newButton.onclick = startNew;
+
+		document.getElementById("docID").value = "";
+		document.getElementById("inputPassword").value = "";
+	}
+
+	// start searching the document
+	function search() {
+		document.getElementById("start").style.display = "none";
+		id = document.getElementById("docID").value;
+		if ("WebSocket" in window) {
+			var client = new WebSocket("ws://localhost:5555");
+			client.onopen = function(event) {
+				client.send(id);
+			};
+
+			// message received: index 0: 1 if found, 0 otherwise
+			// index 1: 0
+			// index 2: 1 if need password, 0 otherwise
+			// index 3: 0
+			// index 4: length of the password
+			// index 5-end: password
+			client.onmessage = function(data) {
+				var receive = data.data.toString();
+				if(receive.charAt(0) == 0) {
+					console.log(data);
+					notFound();
+				} else if(receive.charAt(2) == 1) {
+					var length = receive.charAt(4);
+					password = receive.substring(5, 5 + length);
+					needPassword();
+				} else{
+					location.href = "sharedDoc.html?id=" + id;
+					back();
+				}
+			};
+		} else {
+			alert("Do not support webSocket");
+		}
+	}
+
+	// the document need a password to access
+	function needPassword() {
+		document.getElementById("password").style.display = "block";
+		document.getElementById("goBack").style.display = "block";
+	}
+
+	// start accessing the document
+	function access() {
+		var inputPassword = document.getElementById("inputPassword").value;
+		if(password && inputPassword == password) {
+			location.href = "sharedDoc.html?id=" + id;
+			back();
+		} else {
+			wrong();
+		}
+	}
+
+	// start a new doc
+	function startNew() {
+		if ("WebSocket" in window) {
+			var client = new WebSocket("ws://localhost:5555");
+			var checked = document.getElementById("yes");
+			client.onopen = function(event) {
+				if(checked.checked) {
+					client.send("true");
+				} else {
+					client.send("false");
+				}
+			};
+
+			// ask the server to generate a id for the new doc
+			client.onmessage = function(data) {
+				id = data.data.toString();
+				location.href = "sharedDoc.html?id=" + id;
+				back();
+			};
+		} else {
+			alert("Do not support webSocket");
+		}
+	}
+
+	// the document is not found
+	function notFound() {
+		document.getElementById("notFound").style.display = "block";
+		document.getElementById("goBack").style.display = "block";
+	}
+
+	// the password is incorrect
+	function wrong() {
+		document.getElementById("wrong").style.display = "block";
+	}
+
+	// go back to the start page
+	function back() {
+		document.getElementById("notFound").style.display = "none";
+		document.getElementById("goBack").style.display = "none";
+		document.getElementById("password").style.display = "none";
+		document.getElementById("wrong").style.display = "none";
+		document.getElementById("start").style.display = "block";
+	}
+} () );

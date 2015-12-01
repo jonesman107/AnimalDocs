@@ -1,0 +1,31 @@
+body {
+	background-color: #EAF6F6;
+	font-family: Garamond, serif;
+	font-size: 12pt;
+}
+
+h1, div {
+	text-align: center;
+}
+
+fieldset {
+	border: 10px none;
+	display: inline;
+	vertical-align: top;
+}
+
+div{
+	text-align: center;
+}
+
+#goback p {
+	display: inline;
+}
+
+#doc{
+	width: 90%;
+	height: 1000px;
+	color: black;
+	font-size: 12pt;
+	font-family: Arial;
+}

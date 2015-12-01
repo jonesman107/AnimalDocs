@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Shared Doc</title>
+		<link href="page.css" type="text/css" rel="stylesheet" />
+		<script src="startPage.js" type="text/javascript"></script>
+
+		
+	</head>
+
+	<body>
+		<h1> 
+			CSE461 - Project 3 (shared doc)
+		</h1>
+
+		<div id = "start">
+			<fieldset>
+				<legend>Enter your doc ID:</legend>
+				<input id="docID" />
+				<button id="search">Search</button>
+			</fieldset>
+			<br />
+			<fieldset>
+				<legend>Start a new one:</legend>
+				<button id="new">Start a new one</button>
+				<input type="radio" name="public" id="yes" checked> Public
+				<input type="radio" name="public" id="no">Not Public
+			</fieldset>
+		</div>
+
+		<div id = "notFound" style="display: none;">
+			<p>
+				Cannot fount a doc with the given ID
+			</p>
+		</div>
+
+		<div id = "password" style="display: none;">
+			<p id="initial">
+				You need a password to access this file.
+			</p>
+			<p id = "wrong" style="display:none">
+				Your password is not correct, please try again.
+			</p>
+			<input id="inputPassword" />
+			<button id="access">Access</button>
+		</div>
+
+		<div id = "goBack" style="display: none;">
+			<p>
+				Go to the start page.
+			</p>
+			<button id="back">Go back</button>
+		</div>
+	</body>
+
+</html>
