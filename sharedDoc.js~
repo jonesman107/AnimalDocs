@@ -57,7 +57,7 @@
 	// connect to the server and get the document information of the current docID
 	function connect() {
 		if ("WebSocket" in window) {
-			client = new WebSocket("ws://localhost:5555");
+			client = new WebSocket("ws://172.28.7.28:5555");
 			client.onopen = function(event) {};
 			client.onmessage = function(data) {
 				var receive = data.data.toString();

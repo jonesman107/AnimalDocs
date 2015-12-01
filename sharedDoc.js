@@ -212,9 +212,12 @@
 		 	//alert("add " + add);
 		 } else if(input.value.length < textLen) {
 		 	//alert("delete " + (textLen - input.value.length));
+			client.send("delete " + (textLen - input.value.length));
+			
 		 } else{
 		 	// this is a change of caret
-		 	//alert(input.selectionStart)
+		 	//alert(input.selectionStart);
+			client.send(input.selectionStart);
 		 }
 		 textLen = input.value.length;            
 	}
